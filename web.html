@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Krishi Kishan - Agriculture Support Platform</title>
+    <style>
+      /* Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f0f2f5;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* Updated Header Styles */
+      header {
+        background-color: #fff; /* Light green */
+        color: white;
+        padding: 10px 0; /* Smaller padding */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 24px; /* Slightly smaller font */
+        font-weight: bold;
+        color: #335907;
+      }
+
+      .logo span {
+        color: #335907; /* Lighter green for contrast */
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li {
+        margin-left: 20px;
+      }
+
+      nav ul li a {
+        color: black;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px; /* Smaller font size */
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: #5e9024;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(
+            rgba(59, 96, 18, 0.8),
+            rgba(59, 96, 18, 0.8)
+          ),
+          url("/api/placeholder/1200/600") center/cover;
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+        margin-bottom: 40px;
+        height: 70vh;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 18px;
+        max-width: 800px;
+        margin: 0 auto 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #36571a;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #558b2f;
+        transform: translateY(-2px);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 40px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #689f38;
+        font-size: 32px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .feature-card h3 {
+        color: #689f38;
+        margin-bottom: 15px;
+        font-size: 20px;
+      }
+
+      .feature-card p {
+        color: #666;
+        margin-bottom: 15px;
+      }
+
+      .feature-icon {
+        background-color: #dcedc8;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      /* Goals Section */
+      .goals {
+        background-color: #f1f8e9;
+        padding: 60px 0;
+      }
+
+      .goals-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .goal-card {
+        flex: 1 1 300px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-top: 4px solid #8bc34a;
+      }
+
+      .goal-number {
+        font-size: 48px;
+        color: #dcedc8;
+        font-weight: bold;
+      }
+
+      .goal-card h3 {
+        color: #689f38;
+        margin-bottom: 15px;
+      }
+
+      /* Chatbot Section */
+      .chatbot {
+        padding: 60px 0;
+        background-color: white;
+      }
+
+      .chatbot-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .chatbot-info {
+        flex: 1 1 400px;
+      }
+
+      .chatbot-info h2 {
+        color: #689f38;
+        margin-bottom: 20px;
+      }
+
+      .chatbot-demo {
+        flex: 1 1 400px;
+        background-color: #f1f8e9;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        min-height: 300px;
+        position: relative;
+      }
+
+      .chat-header {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #dcedc8;
+        margin-bottom: 15px;
+      }
+
+      .chat-messages {
+        height: 200px;
+        overflow-y: auto;
+      }
+
+      .message {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 80%;
+      }
+
+      .bot-message {
+        background-color: #dcedc8;
+        margin-right: auto;
+      }
+
+      .user-message {
+        background-color: #8bc34a;
+        color: white;
+        margin-left: auto;
+      }
+
+      .chat-input {
+        display: flex;
+        margin-top: 15px;
+        border-top: 1px solid #dcedc8;
+        padding-top: 15px;
+      }
+
+      .chat-input input {
+        flex-grow: 1;
+        padding: 10px;
+        border-radius: 25px;
+        border: 1px solid #dcedc8;
+        outline: none;
+      }
+
+      /* Market Linkage Section */
+      .market-linkage {
+        padding: 60px 0;
+        background-color: #f1f8e9;
+      }
+
+      .market-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+
+      .market-info {
+        flex: 1 1 400px;
+      }
+
+      .market-info h2 {
+        color: #689f38;
+        margin-bottom: 20px;
+      }
+
+      .market-visual {
+        flex: 1 1 400px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Soil Testing Section */
+      .soil-testing {
+        padding: 60px 0;
+      }
+
+      .soil-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .soil-info {
+        flex: 1 1 400px;
+      }
+
+      .soil-info h2 {
+        color: #689f38;
+        margin-bottom: 20px;
+      }
+
+      .soil-visual {
+        flex: 1 1 400px;
+        background-color: #f1f8e9;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Footer */
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 40px 0;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .footer-section {
+        flex: 1 1 250px;
+        margin-bottom: 20px;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 15px;
+        color: #8bc34a;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: #8bc34a;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+        margin-top: 20px;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        nav ul {
+          margin-top: 15px;
+        }
+
+        .hero h1 {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container header-content">
+        <div class="logo">Krishi <span>Kishan</span></div>
+        <nav>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#goals">Our Goals</a></li>
+            <li><a href="#chatbot">AI Chatbot</a></li>
+            <li><a href="#market">Market Linkage</a></li>
+            <li><a href="#soil">Soil Testing</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Empowering Farmers with Technology</h1>
+        <p>
+          Krishi Kishan connects farmers, provides expert agricultural advice,
+          and promotes sustainable farming practices through our comprehensive
+          platform.
+        </p>
+        <a href="#features" class="btn">Explore Features</a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section-title">Our Features</h2>
+        <div class="features-grid">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon">F</div>
+            <h3>Farmer Networking & Community Support</h3>
+            <p>
+              Create a platform for farmers to share experiences, ask questions,
+              and seek advice from experts.
+            </p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon">C</div>
+            <h3>AI Chatbot for Farmer Queries</h3>
+            <p>
+              A chatbot that answers farming-related queries in regional
+              languages.
+            </p>
+            <a href="#chatbot" class="btn">Try Now</a>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon">P</div>
+            <h3>Pest and Disease Detection</h3>
+            <p>
+              Use image recognition to identify crop diseases or pests when
+              farmers upload photos.
+            </p>
+            <a href="#" class="btn">Upload Image</a>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div class="feature-icon">S</div>
+            <h3>Soil Testing and Analysis</h3>
+            <p>
+              Offer soil analysis by allowing farmers to input basic soil data.
+            </p>
+            <a href="#soil" class="btn">Analyze Soil</a>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="feature-card">
+            <div class="feature-icon">M</div>
+            <h3>Market Linkage Platform</h3>
+            <p>
+              Connect farmers directly with buyers, retailers, or exporters to
+              reduce middlemen.
+            </p>
+            <a href="#market" class="btn">Connect Now</a>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="feature-card">
+            <div class="feature-icon">A</div>
+            <h3>AI Farming Recommendations</h3>
+            <p>
+              Provide information using AI to farmers about the best combo for
+              farming in specific circumstances.
+            </p>
+            <a href="#" class="btn">Get Recommendations</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="goals" id="goals">
+      <div class="container">
+        <h2 class="section-title">Our Goals</h2>
+        <div class="goals-container">
+          <!-- Goal 1 -->
+          <div class="goal-card">
+            <div class="goal-number">1</div>
+            <h3>Conserve Biodiversity</h3>
+            <p>
+              We aim to promote and preserve agricultural biodiversity through
+              sustainable farming practices.
+            </p>
+          </div>
+
+          <!-- Goal 2 -->
+          <div class="goal-card">
+            <div class="goal-number">2</div>
+            <h3>Protect Natural Habitats</h3>
+            <p>
+              Supporting farming methods that protect and enhance natural
+              habitats and ecosystems.
+            </p>
+          </div>
+
+          <!-- Goal 3 -->
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
